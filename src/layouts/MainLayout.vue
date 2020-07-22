@@ -1,44 +1,80 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hHh Lpr fFf">
+    <q-header elevated class="bg-grey-10">
       <q-toolbar>
-        <q-btn
-          flat
+        <q-select
+          v-model="lang"
+          :options="langOptions"
+          hide-dropdown-icon
           dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
+          borderless
+          emit-value
+          map-options
+          options-dense
+          dark
         />
-
-        <q-toolbar-title>
-          Quasar App
+        <q-toolbar-title class="text-center">
+          Dinosys
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <q-btn flat dense round icon="restaurant_menu">
+          <q-badge color="red" floating>2</q-badge>
+        </q-btn>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-1"
-    >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
+    <q-footer elevated class="bg-grey-1">
+      <q-toolbar class="justify-around">
+        <div>
+          <q-btn
+            flat
+            color="blue-grey-6"
+            icon="restaurant"
+            label="Menu"
+            no-caps
+            no-wrap
+            stack
+            to="/"
+          />
+        </div>
+        <div>
+          <q-btn
+            flat
+            color="blue-grey-6"
+            icon="shopping_cart"
+            label="Orders"
+            no-caps
+            no-wrap
+            stack
+            to="/orders"
+          />
+        </div>
+        <div>
+          <q-btn
+            icon="card_giftcard"
+            color="blue-grey-6"
+            flat
+            label="Promotions"
+            no-caps
+            no-wrap
+            stack
+            to="/promo"
+          />
+        </div>
+        <div>
+          <q-btn
+            flat
+            color="blue-grey-6"
+            icon="person"
+            label="Account"
+            no-caps
+            no-wrap
+            stack
+            to="/profile"
+          />
+        </div>
+      </q-toolbar>
+    </q-footer>
 
     <q-page-container>
       <router-view />
@@ -47,61 +83,26 @@
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksData = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
-
 export default {
   name: 'MainLayout',
-  components: { EssentialLink },
-  data () {
+
+  components: {},
+
+  data() {
     return {
-      leftDrawerOpen: false,
-      essentialLinks: linksData
+      lang: this.$i18n.locale,
+      langOptions: [
+        { value: 'en-us', label: 'EN' },
+        { value: 'zh', label: '中文' },
+      ],
     }
-  }
+  },
+  watch: {
+    lang(lang) {
+      this.$i18n.locale = lang
+    },
+  },
 }
 </script>
+
+<style lang="scss"></style>
