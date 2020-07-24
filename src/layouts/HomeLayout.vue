@@ -14,7 +14,7 @@
           dark
         />
         <q-toolbar-title class="text-center">
-          Dinosys
+          Restaurant
         </q-toolbar-title>
 
         <q-btn flat dense round icon="restaurant_menu">
