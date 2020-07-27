@@ -31,7 +31,7 @@
     <q-separator />
 
     <q-list bordered separator>
-      <q-item clickable v-ripple>
+      <q-item clickable v-ripple to="/profile/detail">
         <q-item-section>My Profile</q-item-section>
       </q-item>
 
@@ -64,7 +64,7 @@ export default {}
 
 <style lang="scss">
 .title {
-  margin-left: 8%;
+  margin-left: 40px;
 }
 .btn-logout {
   color: #ff4500;
