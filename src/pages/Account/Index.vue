@@ -35,19 +35,19 @@
         <q-item-section>My Profile</q-item-section>
       </q-item>
 
-      <q-item clickable v-ripple>
+      <q-item clickable v-ripple to="/profile/credits">
         <q-item-section>
           <q-item-label>My Store Credits</q-item-label>
         </q-item-section>
       </q-item>
 
-      <q-item clickable v-ripple>
+      <q-item clickable v-ripple to="/profile/change-number">
         <q-item-section>
           <q-item-label>Change Mobile Number</q-item-label>
         </q-item-section>
       </q-item>
 
-      <q-item clickable v-ripple>
+      <q-item clickable v-ripple to="/profile/change-password">
         <q-item-section>
           <q-item-label>Change Password</q-item-label>
         </q-item-section>
