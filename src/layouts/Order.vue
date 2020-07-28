@@ -1,97 +1,108 @@
 <template>
-  <q-layout view="hHh Lpr fFf"> <!-- Be sure to play with the Layout demo on docs -->
-
-    <!-- (Optional) The Header -->
-    <q-header elevated>
+  <q-layout view="hHh Lpr fFf">
+    <q-header elevated class="bg-grey-10">
       <q-toolbar>
-        <q-btn
-          flat
-          round
+        <q-select
+          v-model="lang"
+          :options="langOptions"
+          hide-dropdown-icon
           dense
-          icon="menu"
-          @click="leftDrawer = !leftDrawer"
+          borderless
+          emit-value
+          map-options
+          options-dense
+          dark
         />
-        <q-toolbar-title>
-          Header
+        <q-toolbar-title class="text-center">
+          Restaurant
         </q-toolbar-title>
-      </q-toolbar>
 
-      <q-tabs>
-        <q-route-tab
-          icon="map"
-          to="/your/route"
-          replace
-          label="One Tab"
-        />
-        <q-route-tab
-          icon="assignment"
-          to="/some/other/route"
-          replace
-          label="Other Tab"
-        />
-      </q-tabs>
+        <q-btn flat dense round icon="restaurant_menu">
+          <q-badge color="red" floating>2</q-badge>
+        </q-btn>
+      </q-toolbar>
     </q-header>
 
-    <!-- (Optional) The Footer -->
-    <q-footer>
-      <q-tabs switch-indicator>
-        <q-route-tab
-          icon="map"
-          to="/your/route"
-          replace
-          label="One Tab"
-        />
-        <q-route-tab
-          icon="assignment"
-          to="/some/other/route"
-          replace
-          label="Other Tab"
-        />
-      </q-tabs>
-
-      <q-toolbar>
-        <q-btn
-          flat
-          round
-          dense
-          icon="menu"
-          @click="leftDrawer = !leftDrawer"
-        />
-        <q-toolbar-title>
-          Footer
-        </q-toolbar-title>
+    <q-footer elevated class="bg-grey-1">
+      <q-toolbar class="justify-around">
+        <div>
+          <q-btn
+            flat
+            color="blue-grey-6"
+            icon="restaurant"
+            label="Menu"
+            no-caps
+            no-wrap
+            stack
+            to="/"
+          />
+        </div>
+        <div>
+          <q-btn
+            flat
+            color="blue-grey-6"
+            icon="shopping_cart"
+            label="Orders"
+            no-caps
+            no-wrap
+            stack
+            to="/orders"
+          />
+        </div>
+        <div>
+          <q-btn
+            icon="card_giftcard"
+            color="blue-grey-6"
+            flat
+            label="Promotions"
+            no-caps
+            no-wrap
+            stack
+            to="/promo"
+          />
+        </div>
+        <div>
+          <q-btn
+            flat
+            color="blue-grey-6"
+            icon="person"
+            label="Account"
+            no-caps
+            no-wrap
+            stack
+            to="/profile"
+          />
+        </div>
       </q-toolbar>
     </q-footer>
 
-    <!-- (Optional) A Drawer; you can add one more with side="right" or change this one's side -->
-    <q-drawer
-      v-model="leftDrawer"
-      side="left"
-      bordered
-      content-class="bg-grey-2"
-    >
-      <!-- QScrollArea is optional -->
-      <q-scroll-area class="fit q-pa-sm">
-        <!-- Content here -->
-      </q-scroll-area>
-    </q-drawer>
-
     <q-page-container>
-      <!-- This is where pages get injected -->
       <router-view />
     </q-page-container>
-
   </q-layout>
 </template>
 
 <script>
 export default {
-  // name: 'LayoutName',
+  name: 'Order',
 
-  data () {
+  components: {},
+
+  data() {
     return {
-      leftDrawer: true
+      lang: this.$i18n.locale,
+      langOptions: [
+        { value: 'en-us', label: 'EN' },
+        { value: 'zh', label: '中文' },
+      ],
     }
-  }
+  },
+  watch: {
+    lang(lang) {
+      this.$i18n.locale = lang
+    },
+  },
 }
 </script>
+
+<style lang="scss"></style>
